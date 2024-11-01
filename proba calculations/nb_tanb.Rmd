@@ -4,7 +4,7 @@
 # p(y=1)=p(y=-1) = 0.5
 py1 = pyn1 = 0.5
 # p(m=1|y=1) = p(m=-1|y=-1) = p(m=1|y=-1) = p(m=-1|y=1) = 0.5
-pm1y1 = pm1yn1 = pmn1y1 = pmn1yn1 = 0.5
+pm1_y1 = pm1_yn1 = pmn1_y1 = pmn1_yn1 = 0.5
 ```
 
 ## NB model
@@ -16,31 +16,32 @@ TANB model: One more dependency to other feature
 In NB model: Y-\>M Y-\>S
 
 ```{R}
-ps1y1 = psn1y1=ps1yn1=psn1yn1 = 0.5
+ps1_y1 = psn1_y1=ps1_yn1=psn1_yn1 = 0.5
 
 # our query: P(Y|M=1, S=1)?
 # P(Y|M=1, S=1)  = P(Y, M=1, S=1)/P(Y)
 # this thing is proportional to P(Y)P(M=1|Y)P(S=1|Y)
 
-(py1m1s1 = py1*pm1y1*ps1y1)
-(pyn1m1s1 = pyn1*pm1yn1*ps1yn1)
+(py1_m1s1 = py1*pm1_y1*ps1_y1)
+(pyn1_m1s1 = pyn1*pm1_yn1*ps1_yn1)
 ```
 
 In TANB model: Y-\>M, Y-\>S, **M-\>S**
+
 ```{R}
 # So we have to name our table
-ps1y1m1 = 1
-psn1y1m1 = 0
-ps1yn1m1 = psn1yn1m1 = 0.5
-ps1y1mn1 = 0
-psn1y1mn1 = 1
-ps1yn1mn1 = psn1yn1mn1 = 0.5
+ps1_y1m1 = 1
+psn1_y1m1 = 0
+ps1_yn1m1 = psn1yn1m1 = 0.5
+ps1_y1mn1 = 0
+psn1_y1mn1 = 1
+ps1_yn1mn1 = psn1yn1mn1 = 0.5
 
 # when we are considering the probs 
 #p(y=1|s=1m=1) =P(s=1, m=1, y=1)|p(y=1) = p(s=1, m=1|y=1)p(y=1) /p(y=1)
 # this is proportional to p(s=1, m=1|y=1)p(y=1)
 # To calculate p(s=1, m=1|y=1): p(s=1|m=1, y=1)P(m=1|y=1)
 
-(py1s1m1 = ps1y1m1*pm1y1*py1)
-(pyn1s1m1 = ps1yn1m1*pm1yn1*pyn1)
+(py1_s1m1 = ps1_y1m1*pm1_y1*py1)
+(pyn1_s1m1 = ps1_yn1m1*pm1_yn1*pyn1)
 ```
